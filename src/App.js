@@ -1,8 +1,8 @@
 import React from "react";
+import Front_UI from "./components/Front_UI";
 
 export default () => (
   <>
-    <h1>Welcome to React Parcel Micro App!</h1>
-    <p>Hard to get more minimal than this React app.</p>
+    <Front_UI />
   </>
 );
