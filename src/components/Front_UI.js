@@ -10,30 +10,35 @@ export default class Front_UI extends Component {
   inputChangedHandler = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
-      show: false,
     });
   };
 
-  showCityData = () => {
-    this.setState({ show: true });
-  };
+  enterPressed = (e) =>
+    e.keyCode === 13
+      ? this.setState({ show: true })
+      : this.setState({ show: false });
 
   render() {
+    const initialText = "Your city/country will be shown here";
     return (
       <div>
         <input
           type="text"
           onChange={this.inputChangedHandler}
+          onKeyDown={this.enterPressed}
           name="userCity"
           value={this.state.userCity}
-          placeholder="Type the city..."
+          placeholder="Press enter..."
         />
-        <button onClick={this.showCityData}>Show</button>
+        {/* <button onClick={this.showCityData}>Show</button> */}
         <br />
         {this.state.show ? (
-          <ShowCity requestedCity={this.state.userCity} />
+          <ShowCity
+            requestedCity={this.state.userCity}
+            initialText={initialText}
+          />
         ) : (
-          "Your city will be shown here"
+          <h1>{initialText}</h1>
         )}
       </div>
     );
